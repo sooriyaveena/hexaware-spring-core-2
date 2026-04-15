@@ -1,0 +1,93 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+                           http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+   
+    <bean id="doctor" class="com.example.demo.Doctor" scope="singleton">
+        <property name="doctorId" value="1"/>
+        <property name="doctorName" value="Dr. Smith"/>
+
+        <property name="specializations">
+            <list>
+                <value>Cardiologist</value>
+                <value>Neurologist</value>
+            </list>
+        </property>
+
+        <property name="skills">
+            <set>
+                <value>Heart Surgery</value>
+                <value>Brain Surgery</value>
+            </set>
+        </property>
+
+        <property name="schedule">
+            <map>
+                <entry key="Monday" value="9:00-5:00"/>
+                <entry key="Tuesday" value="10:00-4:00"/>
+            </map>
+        </property>
+    </bean>
+
+    <bean id="doctor1" class="com.example.demo.Doctor" scope="prototype">
+        <property name="doctorId" value="2"/>
+        <property name="doctorName" value="Dr. John"/>
+
+        <property name="specializations">
+            <list>
+                <value>Orthopedic</value>
+                <value>General</value>
+            </list>
+        </property>
+
+        <property name="skills">
+            <set>
+                <value>Bone Surgery</value>
+                <value>Consultation</value>
+            </set>
+        </property>
+
+        <property name="schedule">
+            <map>
+                <entry key="Monday" value="8:00-2:00"/>
+                <entry key="Wednesday" value="12:00-6:00"/>
+            </map>
+        </property>
+    </bean>
+
+  
+    <bean id="patient" class="com.example.demo.Patient" autowire="byName">
+        <property name="patientId" value="12345"/>
+        <property name="patientName" value="John Doe"/>
+        <property name="disease" value="Flu"/>
+    </bean>
+    
+    <bean id="dept1" class="com.example.demo.nestedclass.Department">
+
+        <property name="deptId" value="101"/>
+        <property name="dname" value="IT"/>
+
+        <property name="emp1">
+            <bean class="com.example.demo.nestedclass.Employee">
+                <property name="empId" value="1"/>
+                <property name="name" value="John"/>
+            </bean>
+        </property>
+
+    </bean>
+
+    <bean id="emp2" class="com.example.demo.nestedclass.Employee"
+      init-method="start"
+      destroy-method="stop">
+
+    <property name="empId" value="2"/>
+    <property name="name" value="Jane"/>
+
+</bean>
+
+</beans>
+
+
+    
+
